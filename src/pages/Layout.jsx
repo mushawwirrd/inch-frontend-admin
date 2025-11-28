@@ -8,46 +8,61 @@ export default function Layout() {
 
     const logOutHandle = async () => {
         await logOut()
-        navigate("/masuk")
+        navigate("/admin")
     }
 
     return (
 
-        <div>
+        <div >
 
-            <nav className="bg-purple-500 text-white px-8 py-6">
+            <nav className=" bg-primary text-white px-8 py-5 ">
 
                 <div className="flex items-center justify-between">
 
-                    <p className="text-lg font-medium">VAMOS!</p>
+                    <p  className="text-xl font-bold">SJY</p>
 
-                    <ul className="flex space-x-6">
+                    <ul >
 
-                        <li>
+                        {/* <li>
                             <Link to="/">Home</Link>
-                        </li>
+                        </li> */}
 
                         {isLogin ? (
                             <>
-                                
-                                {/* <li>
-                                    <Link to="/tambahlapangan">Tambah Lapangan</Link>
-                                </li> */}
-                                <li>
-                                    <Link to="/lapangan">Lapangan</Link>
-                                </li>
-                                <button onClick={logOutHandle}>Keluar</button>
+
+                                <div className="flex space-x-5">
+
+
+
+                                    <li>
+                                        <Link to="/beranda-admin">Beranda</Link>
+                                    </li>
+
+                                    <li>
+                                        <Link to="/dokter">Dokter</Link>
+                                    </li>
+
+                                    <button onClick={logOutHandle}>Keluar</button>
+
+                                </div>
+
+                                {/* <div className="block lg:hidden">
+                                    <button className="bg-white w-6 h-6">
+
+                                    </button>
+                                </div> */}
 
                             </>
                         ) : (
                             <>
 
+                                {/* 
                                 <li>
                                     <Link to="/daftar">Daftar</Link>
                                 </li>
                                 <li>
                                     <Link to="/masuk">Masuk</Link>
-                                </li>
+                                </li> */}
                             </>
                         )}
 

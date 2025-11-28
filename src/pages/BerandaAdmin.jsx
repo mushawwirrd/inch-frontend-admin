@@ -1,28 +1,34 @@
 import { useEffect, useState } from "react"
 import Table from "../components/Table/Table"
 
-export default function Home() {
-    const [dokter, setDokter] = useState([])
+
+export default function BerandaAdmin() {
+    const [lisDr, setLisDr] = useState([])
     const [message, setMessage] = useState("")
 
-    const getDokter = async () => {
 
+    const listDokter = async () => {
         try {
-            const res = await fetch("http://localhost:3005/dokter/lihat-public", {
+            const response = await fetch("http://localhost:3005/dokter/lihat", {
                 credentials: "include"
             })
 
-            const data = await res.json()
+            const data = await response.json()
+            setLisDr(data)
 
-            setDokter(data)
+
+            if (!response.ok) {
+                setMessage("Gagal Menampilkan Dokter")
+            }
 
         } catch (error) {
             console.error(error)
+            setMessage("Serve error")
         }
     }
 
     useEffect(() => {
-        getDokter()
+        listDokter()
     }, [])
 
     const columns = [
@@ -50,6 +56,7 @@ export default function Home() {
                 </div>
             )
         },
+        // { title: "Dokter", propertie: "nama" },
         { title: "Specialis", propertie: "specialis" },
         { title: "Jam", propertie: "jam" },
         { title: "Hari", propertie: "tanggal" }
@@ -57,27 +64,25 @@ export default function Home() {
 
 
     return (
-        <div className=" py-6 mx-10 lg:mx-20" >
+        <div className="py-5 mx-10 lg:mx-20">
 
-            <div>
+            <div className="relative overflow-hidden rounded-xl mb-8 lg:mx-20">
 
-                <div className="relative overflow-hidden rounded-xl mb-8 lg:mx-20">
-
-                    <div className="flex flex-col justify-center object-cover md:h-72">
-                        <img src="/rs.jpg" alt="sanjaya" />
-                    </div>
-
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/20 backdrop-blur-md  p-3">
-                        <h2 className="font-medium text-white text-lg lg:text-xl">Selamat Datang Di RS. Sanjaya</h2>
-                        <h2 className="text-white text-sm">Kecepatan adalah keutamaan kami</h2>
-                    </div>
-
+                <div className="flex flex-col justify-center object-cover md:h-72">
+                    <img src="/rs.jpg" alt="sanjaya" />
                 </div>
 
-                <Table data={dokter} columns={columns} />
+                <div className="absolute bottom-0 left-0 right-0 bg-black/20 backdrop-blur-md  p-3">
+                    <h2 className="font-medium text-white text-lg lg:text-xl">Selamat Datang Di RS. Sanjaya</h2>
+                    <h2 className="text-white text-sm">Kecepatan adalah keutamaan kami</h2>
+                </div>
 
             </div>
+            
+            <Table data={lisDr} columns={columns} />
 
+            {message}
         </div>
-    );
+
+    )
 }

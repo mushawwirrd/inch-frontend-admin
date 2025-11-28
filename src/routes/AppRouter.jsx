@@ -6,10 +6,12 @@ import Regis from "../pages/Regis"
 import LogIn from "../pages/LogIn"
 import Layout from "../pages/Layout"
 import { AuthProvider } from "../context/AuthContext"
-import TambahLapangan from "../pages/TambahLapangan"
 import PrivateRoutes from "./PrivateRoutes"
-import Lapangan from "../pages/Lapangan"
-import EditLapangan from "../pages/EditLapangan"
+
+import TambahDokter from "../pages/TambahDokter"
+import Dokter from "../pages/Dokter"
+import BerandaAdmin from "../pages/BerandaAdmin"
+import EditDokter from "../pages/EditDokter"
 
 
 function AppRouter() {
@@ -21,11 +23,13 @@ function AppRouter() {
 
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
-                        <Route path="daftar" element={<Regis />} />
-                        <Route path="masuk" element={<LogIn />} />
-                        <Route path="tambahlapangan" element={<PrivateRoutes><TambahLapangan /></PrivateRoutes>} />
-                        <Route path="lapangan" element={<PrivateRoutes><Lapangan /></PrivateRoutes>} />
-                        <Route path="edit/:id" element={<PrivateRoutes><EditLapangan /></PrivateRoutes>} />
+                        <Route path="daftar-admin" element={<Regis />} />
+                        <Route path="admin" element={<LogIn />} />
+
+                        <Route path="beranda-admin" element={<PrivateRoutes><BerandaAdmin /></PrivateRoutes>} />
+                        <Route path="tambahdokter" element={<PrivateRoutes><TambahDokter /></PrivateRoutes>} />
+                        <Route path="dokter" element={<PrivateRoutes><Dokter /></PrivateRoutes>} />
+                        <Route path="edit/:id" element={<PrivateRoutes><EditDokter /></PrivateRoutes>} />
 
                         <Route path="*" element={<NoPage />} />
                     </Route>

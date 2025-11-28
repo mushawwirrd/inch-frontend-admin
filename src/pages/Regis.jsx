@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Button from "../components/Button/Button"
+import OutilneButton from "../components/Button/OutlineButton"
 
 
 function Regis() {
@@ -12,33 +14,33 @@ function Regis() {
     const navigate = useNavigate()
 
     const inputRegis = (e) => {
-        const {name, value} = e.target 
+        const { name, value } = e.target
         setRegis(data => {
-            return { ...data, [name] : value}
+            return { ...data, [name]: value }
         })
     }
 
-    const submitHandle = async (e) =>{
+    const submitHandle = async (e) => {
         e.preventDefault()
 
         try {
-            const response = await fetch ("http://localhost:3005/admin/regis", {
-                method : "POST",
-                headers : {
-                    "Content-Type" : "application/json"
+            const response = await fetch("http://localhost:3005/admin/regis", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                body : JSON.stringify(regis)
+                body: JSON.stringify(regis)
             })
 
             const data = await response.json()
 
-            if(response.ok){
+            if (response.ok) {
                 setmMessage("Berhasil Terdaftar")
                 setTimeout(() => navigate("/masuk"), 700)
-                console.log(" Result : ",data)
-            }else{
+                console.log(" Result : ", data)
+            } else {
                 setmMessage("Gagal Terdaftar")
-                console.log(" Result : ",data)
+                console.log(" Result : ", data)
             }
 
 
@@ -49,24 +51,52 @@ function Regis() {
     }
 
     return (
-        <div>
-            <div>
-                <form action="" onSubmit={submitHandle}>
+        <div className="py-5 mx-5 lg:mx-20">
+            <div className=" flex flex-col items-center justify-center">
 
-                    <label htmlFor=""className="block">Email</label>
-                    <input type="text" name="email" value={regis.email} onChange={inputRegis} />
+            
+                <div className="border rounded-xl p-5">
+                    <form action="" onSubmit={submitHandle}>
 
-                    <label htmlFor=""className="block">Username</label>
-                    <input type="text" name="username" value={regis.username} onChange={inputRegis} />
+                        <div className="mb-3">
+                            <label className="block mb-1">Email</label>
+                            <input
+                                type="text"
+                                name="email"
+                                value={regis.email}
+                                onChange={inputRegis}
+                                className=" rounded-xl border p-2" />
+                        </div>
 
-                    <label htmlFor=""className="block">Password</label>
-                    <input type="password" name="password" value={regis.password} onChange={inputRegis} />
+                        <div className="mb-3">
+                            <label className="block mb-1">Username</label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={regis.username}
+                                onChange={inputRegis}
+                                className="rounded-xl border p-2" />
+                        </div>
 
-                    <div>
-                        <button>Daftar</button>
-                    </div>
+                        <div className="mb-5">
+                            <label className="block mb-1">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={regis.password}
+                                onChange={inputRegis}
+                                className="rounded-xl border p-2" />
+                        </div>
 
-                </form>
+                        <div className="flex flex-col items-center justify-center gap-y-2">
+                            {/* <p >Sudah punya akun?</p>
+                            <p>Silahkan <a href="/admin" className="text-blue-500">Masuk</a></p> */}
+                            <OutilneButton type="button" lable="Masuk" click={() => navigate("/admin")} />
+                            <Button lable="Daftar" />
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     )
