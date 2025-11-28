@@ -93,7 +93,7 @@ export default function Dokter() {
         {
             title: "Action",
             render: (dr) => (
-                <div className="flex gap-x-2">
+                <div className="flex justify-center gap-x-2">
                     <OutilneButton click={() => hapusDokter(dr.id)} lable="Hapus" />
                     <Button click={() => halamanEdit(dr.id)} lable="Edit" />
                 </div>

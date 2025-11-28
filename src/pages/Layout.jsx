@@ -1,5 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { LogOut, LucideLogOut } from "lucide-react";
 
 
 export default function Layout() {
@@ -15,11 +16,11 @@ export default function Layout() {
 
         <div >
 
-            <nav className=" bg-primary text-white px-8 py-5 ">
+            <nav className=" bg-primary  text-white px-8 py-5 ">
 
                 <div className="flex items-center justify-between">
 
-                    <p  className="text-xl font-bold">SJY</p>
+                    <p className="text-xl font-bold">SJY</p>
 
                     <ul >
 
@@ -30,19 +31,17 @@ export default function Layout() {
                         {isLogin ? (
                             <>
 
-                                <div className="flex space-x-5">
-
-
+                                <div className="flex space-x-5 font-medium">
 
                                     <li>
-                                        <Link to="/beranda-admin">Beranda</Link>
+                                        <Link to="/beranda-admin" className="hover:text-slate-200 duration-200">Beranda</Link>
                                     </li>
 
                                     <li>
-                                        <Link to="/dokter">Dokter</Link>
+                                        <Link to="/dokter" className="hover:text-slate-200 duration-200">Dokter</Link>
                                     </li>
 
-                                    <button onClick={logOutHandle}>Keluar</button>
+                                    <button onClick={logOutHandle} className="flex items-center justify-center hover:text-slate-200 duration-200 gap-x-1"><LogOut size={20}/> Keluar </button>
 
                                 </div>
 

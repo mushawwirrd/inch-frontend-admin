@@ -5,9 +5,9 @@ function Table({ data, columns }) {
             <table className="w-full">
 
                 <thead>
-                    <tr>
+                    <tr className="bg-primary/20 hover:bg-primary/30 duration-300">
                         {columns.map((col, i) => (
-                            <th key={i} className="bg-primary/20 px-12 py-3">{col.title}</th>
+                            <th key={i} className=" px-12 py-3">{col.title}</th>
                         ))}
                     </tr>
                 </thead>
@@ -19,9 +19,9 @@ function Table({ data, columns }) {
                         </tr>
                     ) : (
                         data.map(row => (
-                            <tr key={row.id} className="bg-gray-50 hover:bg-gray-100">
+                            <tr key={row.id} className="bg-gray-50 hover:bg-gray-100 duration-300">
                                 {columns.map((col, i) => (
-                                    <td key={i} className="text-center whitespace-nowrap">
+                                    <td key={i} className="text-center justify-center whitespace-nowrap">
                                         {col.render ? col.render(row) : row[col.propertie]}
                                     </td>
                                 ))}

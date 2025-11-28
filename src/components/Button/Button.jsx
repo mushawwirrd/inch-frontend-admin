@@ -5,7 +5,7 @@ function Button({ lable, click, type }) {
             <button
                 type={type}
                 onClick={click}
-                className="bg-gradient-to-r from-green-700 to-primary hover:shadow-xl duration-200 text-white rounded-xl py-2 px-8">{lable}</button>
+                className="bg-primary hover:bg-green-500 hover:shadow-xl duration-200 text-white rounded-xl w-24 py-2 px-3">{lable}</button>
 
         </div>
     )
